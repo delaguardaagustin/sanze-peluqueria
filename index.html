@@ -127,5 +127,10 @@ document.getElementById('y').textContent=new Date().getFullYear();
 <link rel="stylesheet" href="asistente.css">
 <script>window.ASISTENTE={"negocio": "Sanze", "persona": "Sanze", "wa": "56987403994", "boton": "Cuéntame qué buscas", "saludo": "Hola, soy el asistente de Sanze. ¿Qué estás buscando?", "servicios": [{"n": "Peluquería", "info": "Corte, color y peinado. Cuéntanos qué quieres hacerte y te damos hora.", "opts": [], "kw": "pelu|corte|color|mecha|tinte|peinado|pelo|cabello|rubio|balayage"}, {"n": "Depilación", "info": "Consulta por WhatsApp las zonas y los valores.", "opts": [], "kw": "depila|cera|axila|pierna|bozo"}, {"n": "Podología", "info": "Atención de podología con hora agendada.", "opts": [], "kw": "podolog|pie|pies|uña|callo"}], "faq": [{"pri": true, "kw": "precio|valor|cuanto|costo|cobra|tarifa", "r": "Los valores dependen del servicio. Sanze te los confirma por WhatsApp."}, {"kw": "donde|direccion|ubicacion|llegar|puente", "r": "Está en Av. México 2896, Puente Alto."}, {"kw": "horario|abre|cierra|disponib|dias|que hora|domingo|sabado", "r": "Atienden de lunes a viernes de 11:00 a 20:00 y los sábados de 11:00 a 17:00."}, {"kw": "agendar|reservar|una hora|pedir hora|\\bcita\\b", "r": "Se agenda por WhatsApp. Si eliges lo que buscas aquí, le dejo el mensaje listo a Sanze."}]};</script>
 <script src="asistente.js" defer></script>
+<!-- contador de visitas -->
+<script>(function(){try{var L=localStorage,S=sessionStorage;if(location.search.indexOf('yo=1')>-1)L.setItem('soy-de-la-casa','1');
+if(L.getItem('soy-de-la-casa')||S.getItem('visita-contada'))return;S.setItem('visita-contada','1');
+var s=location.pathname.split('/').filter(Boolean)[0]||'',c=JSON.stringify({s:s});if(!s)return;
+if(navigator.sendBeacon)navigator.sendBeacon('https://n8n-production-003b9.up.railway.app/webhook/visita',c);else fetch('https://n8n-production-003b9.up.railway.app/webhook/visita',{method:'POST',body:c,keepalive:true});}catch(e){}})();</script>
 </body>
 </html>
